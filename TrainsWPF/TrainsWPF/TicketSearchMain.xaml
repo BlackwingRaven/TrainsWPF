@@ -1,0 +1,35 @@
+﻿<Window x:Class="TrainsWPF.TicketSearchMain"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="TicketSearchMain" Height="600" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="5*"/>
+            <RowDefinition Height="0.75*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
+            <Button Content="Авторизация" Height="24"/>
+            <Button Content="Регистрация" Height="24" Margin="10,0"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label Content="Откуда:"/>
+            <TextBox Height="24" Width="100"/>
+            <Label Content="Куда:"/>
+            <TextBox Height="24" Width="100"/>
+            <Button Content="Поиск" Width="60" Margin="20,0"/>
+            <Button Content="Поиск с пересадкой" Width="120"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label Content="Существует маршрут с пересадкой"/>
+        </StackPanel>
+        <DataGrid Grid.Row="3"/>
+        <StackPanel Grid.Row="4" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button Content="Купить билет" Margin="30,0"/>
+            <Label Content="Id:" />
+            <TextBox Width="40" Height="24"/>
+        </StackPanel>
+    </Grid>
+</Window>
