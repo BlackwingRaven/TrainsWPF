@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-D:\TrainsWPF\TrainsWPF\obj\Debug\
+C:\Users\user\Desktop\TrainsWPF\TrainsWPF\TrainsWPF\obj\Debug\
 TrainsWPF
 none
 false
 DEBUG;TRACE
-D:\TrainsWPF\TrainsWPF\App.xaml
-4-1508420421
+C:\Users\user\Desktop\TrainsWPF\TrainsWPF\TrainsWPF\App.xaml
+6-1736312103
 
-12-1621376579
+111080744180
 12-1401562060
-LogIn.xaml;SignUp.xaml;TicketSearchMain.xaml;TicketSearchStarting.xaml;
+Cabinet.xaml;LogIn.xaml;SignUp.xaml;TicketSearchMain.xaml;TicketSearchNonDirect.xaml;TicketSearchStarting.xaml;
 
-False
+True
 

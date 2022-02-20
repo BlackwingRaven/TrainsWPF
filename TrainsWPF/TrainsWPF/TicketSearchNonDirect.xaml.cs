@@ -15,12 +15,12 @@ using System.Windows.Shapes;
 namespace TrainsWPF
 {
     /// <summary>
-    /// Логика взаимодействия для TicketSearchMain.xaml
+    /// Логика взаимодействия для TicketSearchNonDirect.xaml
     /// </summary>
-    public partial class TicketSearchMain : Window
+    public partial class TicketSearchNonDirect : Window
     {
         string userNumber = "";
-        public TicketSearchMain(string _userNumber)
+        public TicketSearchNonDirect(string _userNumber)
         {
             InitializeComponent();
             userNumber = _userNumber;
@@ -32,20 +32,19 @@ namespace TrainsWPF
             ShowAltLabel.Visibility = Visibility.Collapsed;
             ShowAlt.Visibility = Visibility.Collapsed;
         }
-
         private void BuyTicket_Click(object sender, RoutedEventArgs e)
         {
             if (userNumber != "None")
             {
-                if (Id.Text != "")
+                if ((Id1.Text != "")&&(Id2.Text != ""))
                 {
                     MessageBox.Show("Покупка успешна");
                 }
-                else MessageBox.Show("Пожалуйста, укажите ID поезда, на который хотите купить билет", "Ошибка");
+                else MessageBox.Show("Пожалуйста, укажите ID поездов, на которые хотите купить билеты", "Ошибка");
             }
             else
             {
-                MessageBox.Show("Пожалуйста, войдите в аккаунт","Ошибка");
+                MessageBox.Show("Пожалуйста, войдите в аккаунт", "Ошибка");
                 LogIn login = new LogIn();
                 login.Show();
                 this.Close();
@@ -65,8 +64,8 @@ namespace TrainsWPF
 
         private void ShowAlt_Click(object sender, RoutedEventArgs e)
         {
-            TicketSearchNonDirect ticketSearchNonDirect = new TicketSearchNonDirect(userNumber);
-            ticketSearchNonDirect.Show();
+            TicketSearchMain ticketSearchMain = new TicketSearchMain(userNumber);
+            ticketSearchMain.Show();
             this.Close();
         }
 

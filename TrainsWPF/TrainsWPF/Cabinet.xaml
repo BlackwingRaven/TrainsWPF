@@ -1,0 +1,30 @@
+﻿<Window x:Class="TrainsWPF.Cabinet"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TrainsWPF"
+        mc:Ignorable="d"
+        Title="Cabinet" Height="600" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="0.25*"/>
+            <RowDefinition Height="0.25*"/>
+            <RowDefinition Height="4*"/>
+            <RowDefinition Height="0.5*"/>
+        </Grid.RowDefinitions>
+        <Button Grid.Row="0" x:Name="Back" Content="Назад" Width="40" Height="24" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="10,0" Click="Back_Click"/>
+        <StackPanel Grid.Row="0" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label x:Name="Greeting" Content="Здравствуйте, ...!"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Label Content="Ваши билеты:"/>
+        </StackPanel>
+        <DataGrid Grid.Row="2"/>
+        <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+            <Button x:Name="CancelTicket" Content="Отменить покупку билета" Margin="30,0" Click="CancelTicket_Click"/>
+            <Label Content="Id:" />
+            <TextBox x:Name="Id" Width="40" Height="24"/>
+        </StackPanel>
+    </Grid>
+</Window>

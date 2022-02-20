@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29728.190
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainsWPF_Employee", "TrainsWPF_Employee\TrainsWPF_Employee.csproj", "{1BD4B8E3-AC68-4A19-AE1A-D3675A650E5B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1BD4B8E3-AC68-4A19-AE1A-D3675A650E5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1BD4B8E3-AC68-4A19-AE1A-D3675A650E5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1BD4B8E3-AC68-4A19-AE1A-D3675A650E5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1BD4B8E3-AC68-4A19-AE1A-D3675A650E5B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {114AE8F2-5F1C-42D0-ADE8-AA1262F8B4FC}
+	EndGlobalSection
+EndGlobal

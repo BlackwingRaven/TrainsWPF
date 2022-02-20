@@ -1,7 +1,11 @@
-﻿<Window x:Class="TrainsWPF.TicketSearchMain"
+﻿<Window x:Class="TrainsWPF.TicketSearchNonDirect"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="TicketSearchMain" Height="600" Width="800">
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TrainsWPF"
+        mc:Ignorable="d"
+        Title="TicketSearchNonDirect" Height="600" Width="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.5*"/>
@@ -22,14 +26,16 @@
             <Button x:Name="Search" Content="Поиск" Width="60" Margin="20,0" Click="Search_Click"/>
         </StackPanel>
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Label x:Name="ShowAltLabel" Content="Существует маршрут с пересадкой"/>
+            <Label x:Name="ShowAltLabel" Content="Существует прямой маршрут"/>
             <Button x:Name="ShowAlt" Content="Показать" Width="120" Margin="10,0" Click="ShowAlt_Click"/>
         </StackPanel>
         <DataGrid Grid.Row="3"/>
         <StackPanel Grid.Row="4" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Button x:Name="BuyTicket" Content="Купить билет" Margin="30,0" Click="BuyTicket_Click"/>
-            <Label Content="Id:" />
-            <TextBox x:Name="Id" Width="40" Height="24"/>
+            <Label Content="Id 1:" />
+            <TextBox x:Name="Id1" Width="40" Height="24"/>
+            <Label Content="Id 2:" />
+            <TextBox x:Name="Id2" Width="40" Height="24"/>
         </StackPanel>
     </Grid>
 </Window>

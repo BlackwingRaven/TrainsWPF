@@ -8,22 +8,22 @@
             <RowDefinition Height="5*"/>
             <RowDefinition Height="2*"/>
         </Grid.RowDefinitions>
-        <Button Grid.Row="0" Content="Назад" HorizontalAlignment="Left" Height="20" Width="50" Margin="10"/>
+        <Button Grid.Row="0" x:Name="Back" Content="Назад" HorizontalAlignment="Left" Height="20" Width="50" Margin="10" Click="Back_Click"/>
         <StackPanel Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Label Content="Номер телефона:" />
-            <TextBox />
+            <TextBox x:Name="telNum"/>
             <Label Content="Имя:"/>
-            <TextBox />
+            <TextBox x:Name="firstName"/>
             <Label Content="Фамилия:"/>
-            <TextBox />
+            <TextBox x:Name="lastName"/>
             <Label Content="Электронная почта:"/>
-            <TextBox />
+            <TextBox x:Name="email"/>
             <Label Content="Пароль:"/>
-            <TextBox />
+            <TextBox x:Name="password"/>
         </StackPanel>
         <StackPanel Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center">
-            <Button Content="Зарегистрироваться" Margin="10" Height="30" Width="150"/>
-            <Button Content="Уже есть аккаунт?" Height="24" Width="120"/>
+            <Button x:Name="SignUp" Content="Зарегистрироваться" Margin="10" Height="30" Width="150" Click="SignUp_Click"/>
+            <Button x:Name="LogIn" Content="Уже есть аккаунт?" Height="24" Width="120" Click="LogIn_Click"/>
         </StackPanel>
     </Grid>
 </Window>
