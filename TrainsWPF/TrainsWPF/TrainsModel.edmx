@@ -1,0 +1,367 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище TrainsDBModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Buyer">
+          <Key>
+            <PropertyRef Name="TelNum" />
+          </Key>
+          <Property Name="TelNum" Type="nvarchar" MaxLength="11" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ticket">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="UserTelNum" Type="nvarchar" MaxLength="11" Nullable="false" />
+          <Property Name="TrainID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Train">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Origin" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Destination" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DepartTime" Type="datetime" Nullable="false" />
+          <Property Name="ArriveTime" Type="datetime" Nullable="false" />
+          <Property Name="MaxCapacity" Type="int" Nullable="false" />
+          <Property Name="TicketCost" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "TrainsDB.dbo.IndirectTrains" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="IndirectTrains">
+          <Key>
+            <PropertyRef Name="Id1" />
+            <PropertyRef Name="Id2" />
+            <PropertyRef Name="DepTime1" />
+            <PropertyRef Name="Origin1" />
+            <PropertyRef Name="ArrTime1" />
+            <PropertyRef Name="Dest1" />
+            <PropertyRef Name="DepTime2" />
+            <PropertyRef Name="Dest2" />
+            <PropertyRef Name="ArrTime2" />
+          </Key>
+          <Property Name="Id1" Type="int" Nullable="false" />
+          <Property Name="Id2" Type="int" Nullable="false" />
+          <Property Name="DepTime1" Type="datetime" Nullable="false" />
+          <Property Name="Origin1" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ArrTime1" Type="datetime" Nullable="false" />
+          <Property Name="Dest1" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DepTime2" Type="datetime" Nullable="false" />
+          <Property Name="Dest2" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ArrTime2" Type="datetime" Nullable="false" />
+          <Property Name="Cost" Type="int" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "TrainsDB.dbo.TicketInfo" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="TicketInfo">
+          <Key>
+            <PropertyRef Name="TicketID" />
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Origin" />
+            <PropertyRef Name="Destination" />
+            <PropertyRef Name="DepartTime" />
+            <PropertyRef Name="ArriveTime" />
+            <PropertyRef Name="MaxCapacity" />
+            <PropertyRef Name="TicketCost" />
+            <PropertyRef Name="UserTelNum" />
+          </Key>
+          <Property Name="TicketID" Type="int" Nullable="false" />
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Origin" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Destination" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="DepartTime" Type="datetime" Nullable="false" />
+          <Property Name="ArriveTime" Type="datetime" Nullable="false" />
+          <Property Name="MaxCapacity" Type="int" Nullable="false" />
+          <Property Name="TicketCost" Type="int" Nullable="false" />
+          <Property Name="UserTelNum" Type="nvarchar" MaxLength="11" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Ticket_Train">
+          <End Role="Train" Type="Self.Train" Multiplicity="1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Train">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="TrainID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ticket_User">
+          <End Role="Buyer" Type="Self.Buyer" Multiplicity="1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Buyer">
+              <PropertyRef Name="TelNum" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="UserTelNum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище TrainsDBModelContainer">
+          <EntitySet Name="Buyer" EntityType="Self.Buyer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ticket" EntityType="Self.Ticket" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Train" EntityType="Self.Train" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IndirectTrains" EntityType="Self.IndirectTrains" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [IndirectTrains].[Id1] AS [Id1], 
+    [IndirectTrains].[Id2] AS [Id2], 
+    [IndirectTrains].[DepTime1] AS [DepTime1], 
+    [IndirectTrains].[Origin1] AS [Origin1], 
+    [IndirectTrains].[ArrTime1] AS [ArrTime1], 
+    [IndirectTrains].[Dest1] AS [Dest1], 
+    [IndirectTrains].[DepTime2] AS [DepTime2], 
+    [IndirectTrains].[Dest2] AS [Dest2], 
+    [IndirectTrains].[ArrTime2] AS [ArrTime2], 
+    [IndirectTrains].[Cost] AS [Cost]
+    FROM [dbo].[IndirectTrains] AS [IndirectTrains]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="TicketInfo" EntityType="Self.TicketInfo" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [TicketInfo].[TicketID] AS [TicketID], 
+    [TicketInfo].[ID] AS [ID], 
+    [TicketInfo].[Origin] AS [Origin], 
+    [TicketInfo].[Destination] AS [Destination], 
+    [TicketInfo].[DepartTime] AS [DepartTime], 
+    [TicketInfo].[ArriveTime] AS [ArriveTime], 
+    [TicketInfo].[MaxCapacity] AS [MaxCapacity], 
+    [TicketInfo].[TicketCost] AS [TicketCost], 
+    [TicketInfo].[UserTelNum] AS [UserTelNum]
+    FROM [dbo].[TicketInfo] AS [TicketInfo]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Ticket_Train" Association="Self.FK_Ticket_Train">
+            <End Role="Train" EntitySet="Train" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ticket_User" Association="Self.FK_Ticket_User">
+            <End Role="Buyer" EntitySet="Buyer" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TrainsDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Buyer">
+          <Key>
+            <PropertyRef Name="TelNum" />
+          </Key>
+          <Property Name="TelNum" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Ticket" Relationship="Self.FK_Ticket_User" FromRole="Buyer" ToRole="Ticket" />
+        </EntityType>
+        <EntityType Name="Ticket">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="UserTelNum" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="TrainID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Buyer" Relationship="Self.FK_Ticket_User" FromRole="Ticket" ToRole="Buyer" />
+          <NavigationProperty Name="Train" Relationship="Self.FK_Ticket_Train" FromRole="Ticket" ToRole="Train" />
+        </EntityType>
+        <EntityType Name="Train">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Origin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Destination" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DepartTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ArriveTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MaxCapacity" Type="Int32" Nullable="false" />
+          <Property Name="TicketCost" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Ticket" Relationship="Self.FK_Ticket_Train" FromRole="Train" ToRole="Ticket" />
+        </EntityType>
+        <EntityType Name="IndirectTrains">
+          <Key>
+            <PropertyRef Name="Id1" />
+            <PropertyRef Name="Id2" />
+            <PropertyRef Name="DepTime1" />
+            <PropertyRef Name="Origin1" />
+            <PropertyRef Name="ArrTime1" />
+            <PropertyRef Name="Dest1" />
+            <PropertyRef Name="DepTime2" />
+            <PropertyRef Name="Dest2" />
+            <PropertyRef Name="ArrTime2" />
+          </Key>
+          <Property Name="Id1" Type="Int32" Nullable="false" />
+          <Property Name="Id2" Type="Int32" Nullable="false" />
+          <Property Name="DepTime1" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Origin1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ArrTime1" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Dest1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DepTime2" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Dest2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ArrTime2" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Cost" Type="Int32" />
+        </EntityType>
+        <EntityType Name="TicketInfo">
+          <Key>
+            <PropertyRef Name="TicketID" />
+            <PropertyRef Name="ID" />
+            <PropertyRef Name="Origin" />
+            <PropertyRef Name="Destination" />
+            <PropertyRef Name="DepartTime" />
+            <PropertyRef Name="ArriveTime" />
+            <PropertyRef Name="MaxCapacity" />
+            <PropertyRef Name="TicketCost" />
+            <PropertyRef Name="UserTelNum" />
+          </Key>
+          <Property Name="TicketID" Type="Int32" Nullable="false" />
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Origin" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Destination" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="DepartTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ArriveTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MaxCapacity" Type="Int32" Nullable="false" />
+          <Property Name="TicketCost" Type="Int32" Nullable="false" />
+          <Property Name="UserTelNum" Type="String" MaxLength="11" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Ticket_User">
+          <End Role="Buyer" Type="Self.Buyer" Multiplicity="1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Buyer">
+              <PropertyRef Name="TelNum" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="UserTelNum" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ticket_Train">
+          <End Role="Train" Type="Self.Train" Multiplicity="1" />
+          <End Role="Ticket" Type="Self.Ticket" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Train">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Ticket">
+              <PropertyRef Name="TrainID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="TrainsDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Buyer" EntityType="Self.Buyer" />
+          <EntitySet Name="Ticket" EntityType="Self.Ticket" />
+          <EntitySet Name="Train" EntityType="Self.Train" />
+          <EntitySet Name="IndirectTrains" EntityType="Self.IndirectTrains" />
+          <EntitySet Name="TicketInfo" EntityType="Self.TicketInfo" />
+          <AssociationSet Name="FK_Ticket_User" Association="Self.FK_Ticket_User">
+            <End Role="Buyer" EntitySet="Buyer" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ticket_Train" Association="Self.FK_Ticket_Train">
+            <End Role="Train" EntitySet="Train" />
+            <End Role="Ticket" EntitySet="Ticket" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище TrainsDBModelContainer" CdmEntityContainer="TrainsDBEntities">
+          <EntitySetMapping Name="Buyer">
+            <EntityTypeMapping TypeName="TrainsDBModel.Buyer">
+              <MappingFragment StoreEntitySet="Buyer">
+                <ScalarProperty Name="TelNum" ColumnName="TelNum" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ticket">
+            <EntityTypeMapping TypeName="TrainsDBModel.Ticket">
+              <MappingFragment StoreEntitySet="Ticket">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserTelNum" ColumnName="UserTelNum" />
+                <ScalarProperty Name="TrainID" ColumnName="TrainID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Train">
+            <EntityTypeMapping TypeName="TrainsDBModel.Train">
+              <MappingFragment StoreEntitySet="Train">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Origin" ColumnName="Origin" />
+                <ScalarProperty Name="Destination" ColumnName="Destination" />
+                <ScalarProperty Name="DepartTime" ColumnName="DepartTime" />
+                <ScalarProperty Name="ArriveTime" ColumnName="ArriveTime" />
+                <ScalarProperty Name="MaxCapacity" ColumnName="MaxCapacity" />
+                <ScalarProperty Name="TicketCost" ColumnName="TicketCost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IndirectTrains">
+            <EntityTypeMapping TypeName="TrainsDBModel.IndirectTrains">
+              <MappingFragment StoreEntitySet="IndirectTrains">
+                <ScalarProperty Name="Id1" ColumnName="Id1" />
+                <ScalarProperty Name="Id2" ColumnName="Id2" />
+                <ScalarProperty Name="DepTime1" ColumnName="DepTime1" />
+                <ScalarProperty Name="Origin1" ColumnName="Origin1" />
+                <ScalarProperty Name="ArrTime1" ColumnName="ArrTime1" />
+                <ScalarProperty Name="Dest1" ColumnName="Dest1" />
+                <ScalarProperty Name="DepTime2" ColumnName="DepTime2" />
+                <ScalarProperty Name="Dest2" ColumnName="Dest2" />
+                <ScalarProperty Name="ArrTime2" ColumnName="ArrTime2" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TicketInfo">
+            <EntityTypeMapping TypeName="TrainsDBModel.TicketInfo">
+              <MappingFragment StoreEntitySet="TicketInfo">
+                <ScalarProperty Name="TicketID" ColumnName="TicketID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Origin" ColumnName="Origin" />
+                <ScalarProperty Name="Destination" ColumnName="Destination" />
+                <ScalarProperty Name="DepartTime" ColumnName="DepartTime" />
+                <ScalarProperty Name="ArriveTime" ColumnName="ArriveTime" />
+                <ScalarProperty Name="MaxCapacity" ColumnName="MaxCapacity" />
+                <ScalarProperty Name="TicketCost" ColumnName="TicketCost" />
+                <ScalarProperty Name="UserTelNum" ColumnName="UserTelNum" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

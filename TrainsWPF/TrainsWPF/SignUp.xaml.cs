@@ -19,6 +19,7 @@ namespace TrainsWPF
     /// </summary>
     public partial class SignUp : Window
     {
+        TrainsDBEntities db = new TrainsDBEntities();
         public SignUp()
         {
             InitializeComponent();
@@ -35,10 +36,31 @@ namespace TrainsWPF
         {
             if ((telNum.Text != "") && (firstName.Text != "") && (lastName.Text != "") && (email.Text != "") && (password.Text != ""))
             {
-                MessageBox.Show("Регистрация успешна");
-                LogIn login = new LogIn();
-                login.Show();
-                this.Close();
+                bool checkUser = true;
+                foreach (Buyer buyer in db.Buyer)
+                {
+                    if (buyer.TelNum == telNum.Text)
+                    {
+                        checkUser = false;
+                        break;
+                    }
+                }
+                if (checkUser)
+                {
+                    Buyer buyer = new Buyer();
+                    buyer.TelNum = telNum.Text;
+                    buyer.FirstName = firstName.Text;
+                    buyer.LastName = lastName.Text;
+                    buyer.Email = email.Text;
+                    buyer.Password = password.Text;
+                    db.Buyer.Add(buyer);
+                    db.SaveChanges();
+                    MessageBox.Show("Регистрация прошла успешно. Вы будете перенаправлены на страницу авторизации.");
+                    LogIn login = new LogIn();
+                    login.Show();
+                    this.Close();
+                }
+                else MessageBox.Show("Данный телефон уже зарегистрирован", "Ошибка");
             }
             else MessageBox.Show("Пожалуйста, заполните все поля", "Ошибка");
         }

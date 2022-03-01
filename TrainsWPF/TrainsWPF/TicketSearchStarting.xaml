@@ -8,15 +8,16 @@
             <RowDefinition Height="4*"/>
             <RowDefinition Height="1*"/>
         </Grid.RowDefinitions>
+        <Button Grid.Row="0" x:Name="Exit" Content="X" Height="20" Width="20" VerticalAlignment="Top" HorizontalAlignment="Left" Margin="5" Click="Exit_Click"/>
         <StackPanel Grid.Row="0" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Top">
             <Button x:Name="LogIn" Content="Авторизация" Width="100" Height="30" Click="LogIn_Click"/>
             <Button x:Name="SignUp" Content="Регистрация" Width="100" Height="30" Margin="10" Click="SignUp_Click"/>
         </StackPanel>
         <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Label Content="Откуда:" Height="36"/>
-            <TextBox Height="30" Width="100"/>
-            <Label  Content="Куда:" Height="36"/>
-            <TextBox  Height="30" Width="100"/>
+            <TextBox x:Name="Origin" Height="30" Width="100"/>
+            <Label Content="Куда:" Height="36"/>
+            <TextBox x:Name="Destination" Height="30" Width="100"/>
         </StackPanel>
         <Button Grid.Row="2" x:Name="TicketSearch" Content="Поиск билетов" Width="120" Height="42" Click="TicketSearch_Click"/>
     </Grid>

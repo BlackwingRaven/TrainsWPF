@@ -19,6 +19,7 @@ namespace TrainsWPF_Employee
     /// </summary>
     public partial class TrainAdd : Window
     {
+        TrainsDBEntities db = new TrainsDBEntities();
         public TrainAdd()
         {
             InitializeComponent();
@@ -29,6 +30,33 @@ namespace TrainsWPF_Employee
             TrainsView trainsView = new TrainsView();
             trainsView.Show();
             this.Close();
+        }
+
+        private void AddTrain_Click(object sender, RoutedEventArgs e)
+        {
+            if (originBox.Text != "" && destBox.Text != "" && capBox.Text != "" && depBox.Text != "" && arrBox.Text != "" && costBox.Text != "")
+            {
+                int maxID = 0;
+                foreach (Train _train in db.Train)
+                {
+                    if (_train.ID > maxID) maxID = _train.ID;
+                }
+                maxID++;
+                Train train = new Train();
+                train.ID = maxID;
+                train.Origin = originBox.Text;
+                train.Destination = destBox.Text;
+                train.DepartTime = Convert.ToDateTime(depBox.Text);
+                train.ArriveTime = Convert.ToDateTime(arrBox.Text);
+                train.MaxCapacity = Convert.ToInt32(capBox.Text);
+                train.TicketCost = Convert.ToInt32(costBox.Text);
+                db.Train.Add(train);
+                db.SaveChanges();
+                MessageBox.Show("Поезд добавлен");
+                TrainsView trainsView = new TrainsView();
+                trainsView.Show();
+                this.Close();
+            }
         }
     }
 }

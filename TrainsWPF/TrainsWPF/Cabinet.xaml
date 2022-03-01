@@ -20,7 +20,16 @@
         <StackPanel Grid.Row="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
             <Label Content="Ваши билеты:"/>
         </StackPanel>
-        <DataGrid Grid.Row="2"/>
+        <DataGrid x:Name="DG" Grid.Row="2" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding TicketID}"/>
+                <DataGridTextColumn Header="Время отправления" Binding="{Binding DepartTime}"/>
+                <DataGridTextColumn Header="Время прибытия" Binding="{Binding ArriveTime}"/>
+                <DataGridTextColumn Header="Город отправления" Binding="{Binding Origin}"/>
+                <DataGridTextColumn Header="Город прибытия" Binding="{Binding Destination}"/>
+                <DataGridTextColumn Header="Цена билета" Binding="{Binding TicketCost}"/>
+            </DataGrid.Columns>
+        </DataGrid>
         <StackPanel Grid.Row="3" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Button x:Name="CancelTicket" Content="Отменить покупку билета" Margin="30,0" Click="CancelTicket_Click"/>
             <Label Content="Id:" />

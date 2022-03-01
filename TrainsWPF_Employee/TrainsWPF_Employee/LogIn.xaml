@@ -17,6 +17,6 @@
             <Label Content="Пароль:"/>
             <TextBox x:Name="password" Height="24" Width="100"/>
         </StackPanel>
-        <Button x:Name="LogIn" Grid.Row="1" Content="Войти" Height="36" Width="180" Click="LogIn_Click"/>
+        <Button x:Name="logIn" Grid.Row="1" Content="Войти" Height="36" Width="180" Click="LogIn_Click"/>
     </Grid>
 </Window>

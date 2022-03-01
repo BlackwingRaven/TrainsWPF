@@ -40,8 +40,17 @@ namespace TrainsWPF
 
         private void TicketSearch_Click(object sender, RoutedEventArgs e)
         {
-            TicketSearchMain ticketSearch = new TicketSearchMain("None");
-            ticketSearch.Show();
+            if ((Origin.Text != "") && (Destination.Text != ""))
+            {
+                TicketSearchMain ticketSearch = new TicketSearchMain("None", Origin.Text, Destination.Text);
+                ticketSearch.Show();
+                this.Close();
+            }
+            else MessageBox.Show("Пожалуйста, введите город отбытия и город назначения", "Ошибка");
+        }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
             this.Close();
         }
     }

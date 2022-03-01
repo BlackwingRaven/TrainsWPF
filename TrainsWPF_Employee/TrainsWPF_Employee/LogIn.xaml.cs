@@ -19,6 +19,7 @@ namespace TrainsWPF_Employee
     /// </summary>
     public partial class LogIn : Window
     {
+        TrainsDBEntities db = new TrainsDBEntities();
         public LogIn()
         {
             InitializeComponent();
@@ -26,9 +27,26 @@ namespace TrainsWPF_Employee
 
         private void LogIn_Click(object sender, RoutedEventArgs e)
         {
-            TrainsView trainsView = new TrainsView();
-            trainsView.Show();
-            this.Close();
+            if (login.Text != "" && password.Text != "")
+            {
+                bool check = false;
+                foreach (Employee employee in db.Employee)
+                {
+                    if (employee.Login == login.Text && employee.Password == password.Text)
+                    {
+                        check = true;
+                        break;
+                    }
+                }
+                if (check)
+                {
+                    TrainsView trainsView = new TrainsView();
+                    trainsView.Show();
+                    this.Close();
+                }
+                else MessageBox.Show("Неверный логин и/или пароль");
+            }
+            else MessageBox.Show("Заполните все поля");
         }
     }
 }

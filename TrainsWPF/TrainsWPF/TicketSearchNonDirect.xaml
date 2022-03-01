@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TrainsWPF"
         mc:Ignorable="d"
-        Title="TicketSearchNonDirect" Height="600" Width="800">
+        Title="TicketSearchNonDirect" Height="600" Width="1000">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="0.5*"/>
@@ -29,7 +29,20 @@
             <Label x:Name="ShowAltLabel" Content="Существует прямой маршрут"/>
             <Button x:Name="ShowAlt" Content="Показать" Width="120" Margin="10,0" Click="ShowAlt_Click"/>
         </StackPanel>
-        <DataGrid Grid.Row="3"/>
+        <DataGrid x:Name="DG" Grid.Row="3" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID1" Binding="{Binding Id1}"/>
+                <DataGridTextColumn Header="ID2" Binding="{Binding Id2}"/>
+                <DataGridTextColumn Header="Время отправ. 1" Binding="{Binding DepTime1}"/>
+                <DataGridTextColumn Header="Город отправления" Binding="{Binding Origin1}"/>
+                <DataGridTextColumn Header="Время приб. 1" Binding="{Binding ArrTime1}"/>
+                <DataGridTextColumn Header="Город пересадки" Binding="{Binding Dest1}"/>
+                <DataGridTextColumn Header="Время отправ. 2" Binding="{Binding DepTime2}"/>
+                <DataGridTextColumn Header="Город прибытия" Binding="{Binding Dest2}"/>
+                <DataGridTextColumn Header="Время приб. 2" Binding="{Binding ArrTime2}"/>
+                <DataGridTextColumn Header="Общая цена" Binding="{Binding Cost}"/>
+            </DataGrid.Columns>
+        </DataGrid>
         <StackPanel Grid.Row="4" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Button x:Name="BuyTicket" Content="Купить билет" Margin="30,0" Click="BuyTicket_Click"/>
             <Label Content="Id 1:" />

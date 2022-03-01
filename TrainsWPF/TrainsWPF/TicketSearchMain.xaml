@@ -25,7 +25,16 @@
             <Label x:Name="ShowAltLabel" Content="Существует маршрут с пересадкой"/>
             <Button x:Name="ShowAlt" Content="Показать" Width="120" Margin="10,0" Click="ShowAlt_Click"/>
         </StackPanel>
-        <DataGrid Grid.Row="3"/>
+        <DataGrid x:Name="DG" Grid.Row="3" AutoGenerateColumns="false" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="ID" Binding="{Binding ID}"/>
+                <DataGridTextColumn Header="Время отправления" Binding="{Binding DepartTime}"/>
+                <DataGridTextColumn Header="Время прибытия" Binding="{Binding ArriveTime}"/>
+                <DataGridTextColumn Header="Город отправления" Binding="{Binding Origin}"/>
+                <DataGridTextColumn Header="Город прибытия" Binding="{Binding Destination}"/>
+                <DataGridTextColumn Header="Цена билета" Binding="{Binding TicketCost}"/>
+            </DataGrid.Columns>
+        </DataGrid>
         <StackPanel Grid.Row="4" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
             <Button x:Name="BuyTicket" Content="Купить билет" Margin="30,0" Click="BuyTicket_Click"/>
             <Label Content="Id:" />

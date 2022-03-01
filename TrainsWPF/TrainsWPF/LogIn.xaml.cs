@@ -19,6 +19,7 @@ namespace TrainsWPF
     /// </summary>
     public partial class LogIn : Window
     {
+        TrainsDBEntities db = new TrainsDBEntities();
         public LogIn()
         {
             InitializeComponent();
@@ -28,10 +29,22 @@ namespace TrainsWPF
         {
             if ((telNum.Text != "") && (password.Text != ""))
             {
-                MessageBox.Show("Авторизация успешна");
-                TicketSearchMain ticketSearchMain = new TicketSearchMain(telNum.Text);
-                ticketSearchMain.Show();
-                this.Close();
+                bool checkUser = false;
+                foreach (Buyer buyer in db.Buyer)
+                {
+                    if ((telNum.Text==buyer.TelNum)&&(password.Text==buyer.Password))
+                    {
+                        checkUser = true;
+                        break;
+                    }
+                }
+                if (checkUser)
+                {
+                    TicketSearchMain ticketSearchMain = new TicketSearchMain(telNum.Text);
+                    ticketSearchMain.Show();
+                    this.Close();
+                }
+                else MessageBox.Show("Пожалуйста, проверьте, правильно ли введены номер телефона и пароль", "Ошибка");
             }
             else MessageBox.Show("Пожалуйста, заполните все поля", "Ошибка");
         }
