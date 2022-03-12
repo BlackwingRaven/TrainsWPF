@@ -42,7 +42,7 @@ namespace UnitTestProject1
         [TestMethod]
         public void TestDeleteUser()
         {
-            bool actual = t.DeleteBuyer("000");
+            bool actual = t.DeleteBuyer("001");
             Assert.IsTrue(actual);
         }
     }

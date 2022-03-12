@@ -49,37 +49,57 @@ namespace TrainsWPFTestLibrary
             string email = "";
             foreach (Buyer _buyer in db.Buyer)
             {
-                email = _buyer.Email;
+                if (_buyer.TelNum == "001")
+                {
+                    email = _buyer.Email;
+                    break;
+                }
             }
             return email;
-            //return "test@t.ru";
         }
 
         public string UpdateBuyerEmail(string nEmail)
         {
+            Buyer buyer = new Buyer();
             foreach (Buyer _buyer in db.Buyer)
             {
                 if (_buyer.Email == "test@t.ru")
                 {
-                    _buyer.Email = nEmail;
-                    db.SaveChanges();
+                    buyer = _buyer;
                     break;
                 }
             }
-            return ReadBuyerEmail();
+            buyer.Email = nEmail;
+            db.SaveChanges();
+            string email = "";
+            foreach (Buyer _buyer in db.Buyer)
+            {
+                if (_buyer.TelNum == "001")
+                {
+                    email = _buyer.Email;
+                    break;
+                }
+            }
+            return email;
         }
 
         public bool DeleteBuyer(string telnum)
         {
-            foreach (Buyer buyer in db.Buyer)
+            Buyer buyer = new Buyer();
+            foreach (Buyer _buyer in db.Buyer)
             {
-                if (buyer.TelNum == telnum) db.Buyer.Remove(buyer);
+                if (_buyer.TelNum == telnum)
+                {
+                    buyer = _buyer;
+                    break;
+                }
             }
+            db.Buyer.Remove(buyer);
             db.SaveChanges();
             int counter = 0;
-            foreach (Buyer buyer in db.Buyer)
+            foreach (Buyer _buyer in db.Buyer)
             {
-                if (buyer.TelNum == telnum) counter++;
+                if (_buyer.TelNum == telnum) counter++;
             }
             if (counter == 0) return true;
             else return false;
