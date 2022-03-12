@@ -5,10 +5,6 @@ VisualStudioVersion = 16.0.29728.190
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainsWPF", "TrainsWPF\TrainsWPF.csproj", "{B6625C7F-961B-479B-838C-47C26103D0B9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrainsWPFTestLibrary", "TrainsWPFTestLibrary\TrainsWPFTestLibrary.csproj", "{AAD9529B-1BDD-473A-B44D-999A66AA34CA}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject1", "UnitTestProject1\UnitTestProject1.csproj", "{FC1A3693-37B8-4853-A247-6F60196CC0B1}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -19,14 +15,6 @@ Global
 		{B6625C7F-961B-479B-838C-47C26103D0B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B6625C7F-961B-479B-838C-47C26103D0B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B6625C7F-961B-479B-838C-47C26103D0B9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AAD9529B-1BDD-473A-B44D-999A66AA34CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AAD9529B-1BDD-473A-B44D-999A66AA34CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AAD9529B-1BDD-473A-B44D-999A66AA34CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AAD9529B-1BDD-473A-B44D-999A66AA34CA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FC1A3693-37B8-4853-A247-6F60196CC0B1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FC1A3693-37B8-4853-A247-6F60196CC0B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FC1A3693-37B8-4853-A247-6F60196CC0B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FC1A3693-37B8-4853-A247-6F60196CC0B1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
